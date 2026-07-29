@@ -1,0 +1,9 @@
+opencv-python==4.11.0.86
+numpy==1.26.4
+scipy==1.13.1
+ultralytics==8.3.86
+requests==2.32.3
+googlemaps==4.10.0
+Flask==3.1.0
+geopy==2.4.1
+mysql-connector-python==9.1.0

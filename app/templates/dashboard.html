@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Smart Traffic Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" role="img">
+              <path d="M24 5 7 14v20l17 9 17-9V14L24 5Z" />
+              <path d="m17 27 4-8h6l4 8M19 24h10M24 14v5M24 29v6" />
+            </svg>
+          </div>
+          <div>
+            <p class="eyebrow"><span>RescueFlow AI</span> Traffic Control Center</p>
+            <h1>Smart Traffic <span>Management</span></h1>
+            <p class="subtitle">Real-time vision intelligence for safer, faster urban mobility.</p>
+          </div>
+        </div>
+        <div class="topbar-status">
+          <span class="system-label">System operational</span>
+          <div class="live-pill">
+            <span></span>
+            Live monitoring
+          </div>
+        </div>
+      </header>
+
+      <section class="dashboard-grid">
+        <div class="dashboard-main">
+          <div class="video-panel">
+            <div class="video-head">
+              <div>
+                <span class="camera-icon" aria-hidden="true"></span>
+                Live Detection Feed
+              </div>
+              <span class="ai-badge">YOLOv8 + ByteTrack</span>
+            </div>
+            <img src="{{ url_for('video_feed') }}" alt="Processed traffic video stream" />
+            <div class="video-foot">
+              <span><i class="recording-dot"></i> Computer vision active</span>
+              <span>Real-time inference</span>
+            </div>
+          </div>
+
+          <div class="lane-board">
+            <div class="section-heading">
+              <div>
+                <span class="section-kicker">Lane analytics</span>
+                <h2>Queue Length Estimation</h2>
+              </div>
+              <span class="section-chip">4 lanes monitored</span>
+            </div>
+            <div id="laneCounts" class="bars"></div>
+          </div>
+        </div>
+
+        <aside class="dashboard-sidebar">
+          <div class="control-panel">
+            <div class="panel-title">
+              <div>
+                <span class="section-kicker">Intersection control</span>
+                <h2>Signal Intelligence</h2>
+              </div>
+              <span class="control-icon" aria-hidden="true"></span>
+            </div>
+            <div class="final-signal" id="finalSignal" data-status="RED">
+              <div class="traffic-light">
+                <span data-light="RED"></span>
+                <span data-light="YELLOW"></span>
+                <span data-light="GREEN"></span>
+              </div>
+              <div>
+                <span>Final Road Signal</span>
+                <strong id="finalSignalText">RED</strong>
+              </div>
+            </div>
+
+            <div class="stat-grid">
+              <article>
+                <span>Total Vehicles</span>
+                <strong id="totalVehicles">0</strong>
+              </article>
+              <article>
+                <span>Unique Tracked</span>
+                <strong id="totalUniqueVehicles">0</strong>
+              </article>
+              <article>
+                <span>Traffic Density</span>
+                <strong id="trafficDensity">LOW</strong>
+              </article>
+            </div>
+
+            <div class="countdown-widget" id="countdownWidget" data-status="RED">
+              <span>Signal Countdown</span>
+              <div class="countdown-lamp" id="countdownLamp"></div>
+              <strong id="secondsRemaining">0</strong>
+              <em>Seconds Remaining</em>
+              <div class="countdown-track">
+                <div class="countdown-fill" id="countdownFill"></div>
+              </div>
+            </div>
+
+            <div class="priority-lane">
+              <span>Green Lane</span>
+              <strong id="greenLane">Lane A</strong>
+            </div>
+
+            <div class="emergency-priority" id="emergencyPriority" data-status="inactive">
+              <span>Emergency Priority</span>
+              <strong id="emergencyPriorityText">Normal</strong>
+              <small id="emergencyPriorityMeta">Checking detector...</small>
+            </div>
+
+            <div class="storage-status" id="storageStatus" data-status="offline">
+              <span>MySQL Storage</span>
+              <strong>Offline</strong>
+            </div>
+          </div>
+
+          <div class="vehicle-board">
+            <div class="section-heading">
+              <div>
+                <span class="section-kicker">Detection summary</span>
+                <h2>Vehicle Classes</h2>
+              </div>
+              <span class="scan-icon" aria-hidden="true"></span>
+            </div>
+            <div id="vehicleTypes" class="vehicle-list"></div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="report-strip">
+        <article>
+          <span>Stored Snapshots</span>
+          <strong id="reportSnapshots">0</strong>
+        </article>
+        <article>
+          <span>Avg Vehicles Today</span>
+          <strong id="reportAverage">0</strong>
+        </article>
+        <article>
+          <span>High Density Events</span>
+          <strong id="reportHighDensity">0</strong>
+        </article>
+      </section>
+
+      <footer class="dashboard-footer">
+        <span>RescueFlow AI Operations Console</span>
+        <span>Powered by real-time computer vision</span>
+      </footer>
+    </main>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>

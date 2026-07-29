@@ -1,0 +1,33 @@
+.DS_Store
+venv/
+__pycache__/
+*.pyc
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Environment
+.env
+
+# Datasets
+datasets/
+
+# YOLO outputs
+runs/
+
+# Large model files
+*.pt
+*.pth
+*.onnx
+
+# Videos
+*.mp4
+*.avi
+*.mov
+
+# Archives
+*.zip
+
+# macOS
+.DS_Store
